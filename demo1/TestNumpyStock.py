@@ -45,6 +45,7 @@ class TestNumpyStock(TestCase):
 
     # 计算极差
     # 计算股价近期最高价的最大值和最小值的差值 和 计算股价近期最低价的最大值和最小值的差值
+    # 越高->波动越明显
     def testPtp(self):
         file_name = "./data/data.csv"
         high_price, low_price = np.loadtxt(
@@ -68,6 +69,7 @@ class TestNumpyStock(TestCase):
             unpack=True,
         )
         print("avg_price = {}".format(np.average(end_price)))
+        # 加权
         print("VWAP = {}".format(np.average(end_price, weights=volumn)))
 
     # 计算中位数
@@ -92,6 +94,7 @@ class TestNumpyStock(TestCase):
             usecols=(2, 6),
             unpack=True,
         )
+        # Compute the variance along the specified axis.
         print("var = {}".format(np.var(end_price)))
         print("var = {}".format(end_price.var()))
 
@@ -109,6 +112,7 @@ class TestNumpyStock(TestCase):
             unpack=True,
         )
         log_return = np.diff(np.log(end_price))
+        # 标准差 / 均值
         annual_volatility = log_return.std() / log_return.mean() * np.sqrt(250)
         monthly_volatility = log_return.std() / log_return.mean() * np.sqrt(12)
 

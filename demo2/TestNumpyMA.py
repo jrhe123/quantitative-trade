@@ -8,6 +8,17 @@ from unittest import TestCase
 
 
 class TestNumpyMA(TestCase):
+    # 指数衰减 （例子）
+    def testEXP(self):
+        x = np.arange(5)
+        y = np.arange(10)
+        print("x", x)  # exp 函数可以计算出每个数组元素的指数
+        print("y", y)
+        print("""Exp x : {}""".format(np.exp(x)))
+        print("""Exp y : {}""".format(np.exp(y)))
+        # 线性衰减: -1 => 0, do it in 5 steps
+        print("""Linespace : {}""".format(np.linspace(-1, 0, 5)))
+
     # 简单移动均线
     def testSMA(self):
         file_name = "./data/data.csv"
@@ -37,6 +48,7 @@ class TestNumpyMA(TestCase):
         )
         print(end_price)
         N = 5
+        # !!! 权重衰减 !!!
         weights = np.exp(np.linspace(-1, 0, N))
         weights /= weights.sum()
         print(weights)
@@ -48,22 +60,13 @@ class TestNumpyMA(TestCase):
         plt.plot(t, ema, lw=2.0)
         plt.show()
 
-    # 指数衰减
-    def testEXP(self):
-        x = np.arange(5)
-        y = np.arange(10)
-        print("x", x)  # exp 函数可以计算出每个数组元素的指数
-        print("y", y)
-        print("""Exp x : {}""".format(np.exp(x)))
-        print("""Exp y : {}""".format(np.exp(y)))
-        # 线性衰减: -1 => 0, do it in 5 steps
-        print("""Linespace : {}""".format(np.linspace(-1, 0, 5)))
-
 
 def main():
     obj = TestNumpyMA()
-    obj.testEXP()
+    # 简单移动均线 【0,0.25,0.5,0.75,1】
     # obj.testSMA()
+
+    # 指数移动均线（权重衰减）【0,0.123,0.234，。。。】
     # obj.testEMA()
 
 
