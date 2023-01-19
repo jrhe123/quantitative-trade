@@ -6,7 +6,13 @@ from matplotlib.pyplot import show
 
 from unittest import TestCase
 
-
+# 0: code
+# 1: date
+# 2: end price
+# 3: start price
+# 4: high price
+# 5: low price
+# 6: volumn
 class TestBoll(TestCase):
     def testBoll(self):
         # 绘制布林带
@@ -15,12 +21,20 @@ class TestBoll(TestCase):
         weights = np.ones(N) / N
         print("Weights", weights)
 
-        file_name = "./data/data.csv"
-        c = np.loadtxt(file_name, delimiter=",", usecols=(2,), unpack=True)
+        file_name = "./data/data_2.csv"
+        # 收盘价
+        c = np.loadtxt(
+            file_name,
+            delimiter=",",
+            usecols=(2,),
+            unpack=True,
+        )
+        # 中规 - 简单移动均线
         sma = np.convolve(weights, c)[N - 1 : -N + 1]
         deviation = []
         C = len(c)
 
+        # K * N 时间段的标准差
         for i in range(N - 1, C):
             if i + N < C:
                 dev = c[i : i + N]
@@ -36,7 +50,9 @@ class TestBoll(TestCase):
 
         deviation = 2 * np.array(deviation)
         print(len(deviation), len(sma))
+        # 上轨
         upperBB = sma + deviation
+        # 下轨
         lowerBB = sma - deviation
 
         c_slice = c[N - 1 :]
