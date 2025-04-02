@@ -34,7 +34,7 @@ class Solution:
 
         return res
 
-  
+
 # Input:
 # nums = [-1, 0, 1, 2, -1, -4]
 
