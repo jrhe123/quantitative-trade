@@ -5,16 +5,19 @@ class Solution:
         if not intervals:
             return []
 
-        intervals.sort(key=lambda x: x[0])  # 按起始时间排序
-        merged = [intervals[0]]
+        # 1. 先按照起始位置排序
+        intervals.sort(key=lambda x: x[0])
+
+        merged = [intervals[0]]  # 初始化结果数组
 
         for current in intervals[1:]:
             last = merged[-1]
+
+            # 如果当前区间与上一个有重叠
             if current[0] <= last[1]:
-                # 合并
-                last[1] = max(last[1], current[1])
+                last[1] = max(last[1], current[1])  # 合并
             else:
-                merged.append(current)
+                merged.append(current)  # 无重叠，加入新区间
 
         return merged
     

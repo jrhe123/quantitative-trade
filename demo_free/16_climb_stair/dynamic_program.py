@@ -9,7 +9,13 @@ class Solution:
         for i in range(3, n + 1):
             dp[i] = dp[i - 1] + dp[i - 2]
 
+        print("dp: ", dp)
         return dp[n]
+    
+if __name__ == "__main__":
+    solution = Solution()
+    ans = solution.climbStairs(5)
+    print("ans: ", ans)
     
 # n = 5
 # dp[1] = 1

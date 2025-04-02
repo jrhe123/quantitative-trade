@@ -9,13 +9,16 @@ class Solution:
         count = 0
 
         def dfs(r, c):
+            # 越界或遇水，返回
             if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == '0':
                 return
-            grid[r][c] = '0'  # 标记为已访问
-            dfs(r+1, c)
-            dfs(r-1, c)
-            dfs(r, c+1)
-            dfs(r, c-1)
+            grid[r][c] = '0'  # 标记为“水”，防止重复访问
+
+            # 递归探索上下左右
+            dfs(r + 1, c)
+            dfs(r - 1, c)
+            dfs(r, c + 1)
+            dfs(r, c - 1)
 
         for r in range(rows):
             for c in range(cols):
@@ -24,7 +27,7 @@ class Solution:
                     dfs(r, c)
 
         return count
-    
+
 # [
 #   ["1","1","0","0","0"],
 #   ["1","1","0","0","0"],
