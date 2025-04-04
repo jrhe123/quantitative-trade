@@ -15,4 +15,12 @@ class Solution:
 
         return max_len
 
-s = "abcabcbb"
+# 输入: s = "abcabcbb"
+
+# right=0, c='a' → 无重复 → max_len=1
+# right=1, c='b' → 无重复 → max_len=2
+# right=2, c='c' → 无重复 → max_len=3
+# right=3, c='a' → 出现重复，left=1
+# right=4, c='b' → 出现重复，left=2
+# ...
+# 最终 max_len = 3
