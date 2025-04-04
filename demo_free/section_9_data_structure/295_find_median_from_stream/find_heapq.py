@@ -29,3 +29,11 @@ mf.addNum(2)
 mf.findMedian()  # 返回 1.5
 mf.addNum(3)
 mf.findMedian()  # 返回 2
+
+
+# 输入：
+# ["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
+# [[],             [1],      [2],       [],          [3],      []]
+
+# 输出：
+# [null, null, null, 1.5, null, 2.0]

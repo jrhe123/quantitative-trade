@@ -13,7 +13,7 @@ class Solution:
 
         # 所有入度为0的节点入队
         queue = deque([i for i in range(numCourses) if indegree[i] == 0])
-        count = 0
+        finished = 0
 
         print("graph: ", graph)
         print("indegree: ", indegree)
@@ -21,7 +21,7 @@ class Solution:
 
         while queue:
             course = queue.popleft()
-            count += 1
+            finished += 1
             print("course: ", course)
             
             for neighbor in graph[course]:
@@ -31,7 +31,7 @@ class Solution:
                 if indegree[neighbor] == 0:
                     queue.append(neighbor)
 
-        return count == numCourses
+        return finished == numCourses
 
 if __name__ == '__main__':
     solution = Solution()
