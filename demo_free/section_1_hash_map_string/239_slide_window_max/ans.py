@@ -35,6 +35,8 @@ def maxSlidingWindow(nums, k):
 
     return result
 
+#! 给定一个整数数组 nums 和一个滑动窗口大小 k，返回每个滑动窗口中的最大值。
+
 # 输入: nums = [1,3,-1,-3,5,3,6,7], k = 3
 # 输出: [3,3,5,5,6,7]
 
