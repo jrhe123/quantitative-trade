@@ -4,16 +4,22 @@
 def firstMissingPositive(nums):
     n = len(nums)
 
+    print(nums)
+
     # Step 1: 预处理
     for i in range(n):
         if nums[i] <= 0 or nums[i] > n:
             nums[i] = n + 1
+
+    print(nums)
 
     # Step 2: 原地哈希标记
     for i in range(n):
         num = abs(nums[i])
         if 1 <= num <= n:
             nums[num - 1] = -abs(nums[num - 1])
+
+    print(nums)
 
     # Step 3: 查找第一个未标记的位置
     for i in range(n):
@@ -28,3 +34,8 @@ def firstMissingPositive(nums):
 # Step 1: 替换负数 → [3, 4, 5, 1]  
 # Step 2: 标记出现过的数字 → index 2, 3, 0 → nums = [-3, 4, -5, -1]  
 # Step 3: 找第一个 >0 的位置是 index 1 → 答案是 2
+
+firstMissingPositive(
+    # [3, 4, -1, 1]
+    [3, 4, -1, -1]
+)
