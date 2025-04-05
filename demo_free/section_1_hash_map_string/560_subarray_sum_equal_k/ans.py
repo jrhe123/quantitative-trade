@@ -1,18 +1,26 @@
 def subarraySum(nums, k):
-    from collections import defaultdict
-
-    count_map = defaultdict(int)
-    count_map[0] = 1  # 初始化前缀和为0的情况
-
+    prefix_count = {0: 1}  # 初始化：前缀和为 0 出现一次（空子数组）
     pre_sum = 0
-    result = 0
+    count = 0
 
     for num in nums:
-        pre_sum += num
-        result += count_map[pre_sum - k]  # 找有多少前缀和满足条件
-        count_map[pre_sum] += 1  # 更新前缀和出现次数
+        print("pre_sum: ", pre_sum)
+        pre_sum += num  # 当前前缀和
 
-    return result
+        # 查找之前是否有 pre_sum - k 出现过
+        if pre_sum - k in prefix_count:
+            count += prefix_count[pre_sum - k]
+
+        # 更新当前前缀和的出现次数
+        prefix_count[pre_sum] = prefix_count.get(pre_sum, 0) + 1
+
+    print("prefix_count: ", prefix_count)
+
+    return count
+
+subarraySum(
+    [1,1,1], 2
+)
 
 # 输入: nums = [1,1,1], k = 2
 # 输出: 2
